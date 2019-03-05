@@ -1,25 +1,31 @@
-#Factory Method
+# Prototype
+É um padrão que tem como objetivo facilitar a replicação de objetos de mesma classe, sem sobrecarregar a memória da aplicação. Através da clonagem de objetos, é possível reduzir o consumo de processamento em memória e criar várias instâncias da mesma classe.
+### Cenário de Aplicação
+Contextos onde se torna necessário a criação de diversas instâncias da mesma classe. Ex.: Vários ecommerces permite a customização de alguns produtos, por exemplo camisa de futebol, onde é possível customizar número e nome.
 
-###Cenário de Aplicação
-Contextos que exigem a instanciação de vários objetos em diversos lugares, o objetivo desse pattern é concentrar a criação dos objetos em objetos chamados de fábricas e reduzir acoplamento das classes junto ao sistema.
+Supondo que ao final do di, na fábrica de produz tais camisas, o operador precisa imprimir em tela de cada produto, quais são as customizações.
 
-Com a utilização de interfaces padronizadas, são atribuidos alguns papéis junto a esse padrão, são eles
+Camisa Real Madrid
+Tamanho: M Nome:Alex N: 10
+Tamanho: G Nome:Junior N: 5
+Tamanho: P Nome:Pedro N: 51
 
-- Product, interface que define os contratos das classes concretas
-- Concrete Product, classe que segue o contrato (Product)
-- Creator, interface que define os métodos de criação de Concrete Product
-- Concrete Creator, representa a classe que implementa Creator e facilita a crição dos objetos (Concrete Product)
+Neste cenário, podemos criar um único objeto e alterar as propriedades de cada objeto sem a necessidade de instânciar um objeto toda vez que passamos pelo registro de cada cliente.
 
-###Vantagens
-- Redução do acoplamento das classes concretas junto ao sistema, uma vez que concentramos a criação dos objetos nas factories, sendo assim temos apenas um único ponto para alterar caso necessário.
-- Utilização de interfaces para definição de contratos das factories e classes concretas
+São papéis do Prototype
 
+- Prototype, classe abstrata que extende da classe concreta.
+- Concrete Prototype, classe concreta que será utilizada como base da prototype
+- Client, classe responsável (não obrigatório) por criar os objetos de protótipos e efetuar a clonagem
+### Vantagens
+- Reduz consumo de processamento e memória na criação de objetos
+- Reduz acoplamaneto das classes no sistema (pois a instância do produto esta no extends da classe Prototype, cabendo alteração somente nela)
 
-####Perguntas
-*Conforme a definição no livro Design Patterns (GAMMA; HELM; JOHNSON; VLISSIDES, 1994), os autores sugerem que o objetivo do padrão é definir uma interface para a criação dos objetos e transferir a responsabilidade de criação para as subclasses.*
-- Ao utilizar esse método, estamos nós abrindo mão da utilização de construtores, isto é pode ser considerado bom ? Pode-se utilizar como retorno o caminho da classe para então permitir ao desenvolvedor a utilização do operador new para instanciar e então utilizar o construtor da classe ?
+#### Perguntas
+- Existe mesmo vantagem no uso de prototype ? Pois deve-se "duplicar" uma classe para criar o papel de prototype
+- Seria errado não atribuir ao papel de Concrete Prototype o abstract ? Uma vez que já se pode utilizar a classe no sistema apenas aplicando a classe Prototype, que extende da Concrete Prototype.
 
 #####Referências 
-[Source Making](https://sourcemaking.com/design_patterns/factory_method)
+[Source Making](https://sourcemaking.com/design_patterns/prototype)
 
 [Livro de Design Patterns com PHP7](https://www.casadocodigo.com.br/products/livro-design-paterns-php)
